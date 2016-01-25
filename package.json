@@ -13,6 +13,9 @@
     "lodash.flow": "^3.2.1"
   },
   "devDependencies": {
-    "standard": "^5.0.0"
+    "chalk": "^1.1.1",
+    "error-symbol": "^0.1.0",
+    "standard": "^5.0.0",
+    "success-symbol": "^0.1.0"
   }
 }
