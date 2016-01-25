@@ -1,14 +1,16 @@
 {
   "name": "get-artist-title",
   "version": "0.0.1",
-  "description": "",
+  "description": "Get the artist and title from a string, eg. a YouTube video title",
+  "license": "MIT",
+  "repository": "goto-bus-stop/get-artist-title",
+  "author": "Renée Kooi <renee@kooi.me>",
   "main": "lib/index.js",
   "scripts": {
-    "test": "node test"
+    "test": "standard && node test"
   },
   "keywords": [],
   "author": "",
-  "license": "MIT",
   "dependencies": {
     "lodash.flow": "^3.2.1"
   },
