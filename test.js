@@ -17,11 +17,11 @@ function testSucceeded (result) {
   console.log(chalk.green('   ' + success + ' got ' + stringifyTitle(result)))
 }
 
-function runTest (test) {
+function runTest (plugins, test) {
   var expected = test.slice(1)
 
   console.log('  ' + test[0])
-  var result = getSongArtistTitle(test[0])
+  var result = getSongArtistTitle(test[0], plugins)
   if (!result || result[0] !== expected[0] || result[1] !== expected[1]) {
     testFailed(result, expected)
     return false
@@ -32,13 +32,15 @@ function runTest (test) {
 
 function runSuite (suite) {
   var score = { fail: 0, success: 0 }
-  suite.map(runTest).forEach(function (success) {
-    if (success) {
-      score.success++
-    } else {
-      score.fail++
-    }
-  })
+  suite.tests
+    .map(runTest.bind(null, suite.plugins))
+    .forEach(function (success) {
+      if (success) {
+        score.success++
+      } else {
+        score.fail++
+      }
+    })
   return score
 }
 
@@ -48,10 +50,21 @@ function readTest (test) {
   })
 }
 
+var PLUGINS = /^plugins: (.*?)$/
 function readSuite (pathName) {
-  return fs.readFileSync(pathName, 'utf8')
+  var tests = fs.readFileSync(pathName, 'utf8')
     .split('\n\n')
-    .map(readTest)
+
+  var plugins = [ 'base' ]
+  var pluginsLine = tests[0].match(PLUGINS)
+  if (pluginsLine) {
+    plugins = pluginsLine[1].split(',').map(function (str) { return str.trim() })
+    tests.shift()
+  }
+  return {
+    tests: tests.map(readTest),
+    plugins: plugins
+  }
 }
 
 var suites = fs.readdirSync('test')
