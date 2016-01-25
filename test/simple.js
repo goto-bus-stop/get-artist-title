@@ -11,6 +11,9 @@ module.exports = {
       expected: [ 'FEMM', 'PoW!' ] },
     // https://youtu.be/ti1W7Zu8j9k
     { input: 'The Wombats - Anti-D Official Video',
-      expected: [ 'The Wombats', 'Anti-D' ] }
+      expected: [ 'The Wombats', 'Anti-D' ] },
+    // https://soundcloud.com/haloneko2/4minute-whatever
+    { input: '4MINUTE – Whatever',
+      expected: [ '4MINUTE', 'Whatever' ] }
   ]
 }
