@@ -58,7 +58,7 @@ function readSuite (suiteName) {
 }
 
 var suites = fs.readdirSync('test')
-var total = { fail: 0, success: 0 }
+var total = { fail: 0, optionalFail: 0, success: 0 }
 suites.forEach(function (suiteName) {
   var suite = readSuite(suiteName)
 
@@ -73,8 +73,18 @@ suites.forEach(function (suiteName) {
     chalk.green(' ' + success + ' ' + result.success)
   )
   total.fail += result.fail
+  total.optionalFail += result.optionalFail
   total.success += result.success
 })
+
+console.log('')
+console.log('summary')
+console.log('-------')
+console.log(
+  chalk.red(' ' + error + ' ' + total.fail) + '  ' +
+  chalk.yellow(' ' + warning + ' ' + total.optionalFail) + ' ' +
+  chalk.green(' ' + success + ' ' + total.success)
+)
 
 if (total.fail > 0) {
   process.exit(1)
