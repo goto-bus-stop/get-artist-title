@@ -10,7 +10,6 @@
     "test": "standard && node test"
   },
   "keywords": [],
-  "author": "",
   "dependencies": {
     "lodash.flow": "^3.2.1"
   },
