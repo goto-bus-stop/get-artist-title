@@ -2,6 +2,7 @@ var fs = require('fs')
 var chalk = require('chalk')
 var success = require('success-symbol')
 var error = require('error-symbol')
+var warning = require('warning-symbol')
 
 var getSongArtistTitle = require('./')
 
@@ -13,6 +14,10 @@ function testFailed (test, result) {
   console.error(chalk.red('   ' + error + ' expected ' + stringifyTitle(test.expected)))
   console.error(chalk.red('     but got  ' + stringifyTitle(result)))
 }
+function optionalTestFailed (test, result) {
+  console.error(chalk.yellow('   ' + warning + ' expected ' + stringifyTitle(test.expected)))
+  console.error(chalk.yellow('     but got  ' + stringifyTitle(result)))
+}
 function testSucceeded (test, result) {
   console.log(chalk.green('   ' + success + ' got ' + stringifyTitle(result)))
 }
@@ -21,23 +26,24 @@ function runTest (plugins, test) {
   console.log('  ' + test.input)
   var result = getSongArtistTitle(test.input, plugins)
   if (!result || result[0] !== test.expected[0] || result[1] !== test.expected[1]) {
-    testFailed(test, result)
-    return false
+    if (test.optional) {
+      optionalTestFailed(test, result)
+      return 'optionalFail'
+    } else {
+      testFailed(test, result)
+      return 'fail'
+    }
   }
   testSucceeded(test, result)
-  return true
+  return 'success'
 }
 
 function runSuite (suite) {
-  var score = { fail: 0, success: 0 }
+  var score = { fail: 0, optionalFail: 0, success: 0 }
   suite.tests
     .map(runTest.bind(null, suite.plugins))
-    .forEach(function (success) {
-      if (success) {
-        score.success++
-      } else {
-        score.fail++
-      }
+    .forEach(function (result) {
+      score[result]++
     })
   return score
 }
@@ -63,6 +69,7 @@ suites.forEach(function (suiteName) {
   var result = runSuite(suite)
   console.log(
     chalk.red(' ' + error + ' ' + result.fail) + '  ' +
+    chalk.yellow(' ' + warning + ' ' + result.optionalFail) + ' ' +
     chalk.green(' ' + success + ' ' + result.success)
   )
   total.fail += result.fail
