@@ -10,6 +10,14 @@ module.exports = {
       expected: [ 'show me', 'B-free' ] },
     // https://www.youtube.com/watch?v=5hINYNZslP0
     { input: '성시경 Sung Si Kyung - 내게 오는 길.mp4',
-      expected: [ '성시경 Sung Si Kyung', '내게 오는 길' ] }
+      expected: [ '성시경 Sung Si Kyung', '내게 오는 길' ] },
+
+    // Things that are NOT file extensions are not removed:
+    // https://www.youtube.com/watch?v=E2yLg9iW1_0
+    { input: '에이핑크 - Mr.chu',
+      expected: [ '에이핑크', 'Mr.chu' ] },
+    // https://www.youtube.com/watch?v=P1Oya1PqKFc
+    { input: 'Far East Movement - Live My Life (Feat. Justin Bieber) cover by J.Fla',
+      expected: [ 'Far East Movement', 'Live My Life (Feat. Justin Bieber) cover by J.Fla' ] }
   ]
 }
