@@ -30,6 +30,27 @@ The second parameter is an array of plugins. These can be strings for [plugins
 that come with `get-artist-title`](./lib/plugins), or plugin objects. You
 shouldn't touch this unless you're noticing that you get really bad results :)
 
+### getArtistTitle.fallBackToArtist(string)
+
+Create a plugin object that falls back to the given artist name if no artist
+name can be extracted by other plugins. Typically useful when dealing with video
+data from YouTube:
+
+```js
+const getArtistTitle = require('get-artist-title')
+const fallBackToArtist = require('get-artist-title').fallBackToArtist
+
+getArtistTitle(video.snippet.title, [
+  'base',
+  fallBackToArtist(video.snippet.channelTitle)
+]);
+```
+
+### getArtistTitle.fallBackToTitle(string)
+
+Create a plugin object that falls back to the given song title if no title can
+be extracted by other plugins.
+
 ## Plugins
 
 > **Note** Since `get-artist-title` is still new, the included/default set of
