@@ -51,7 +51,7 @@ getArtistTitle(video.snippet.title, [
 Create a plugin object that falls back to the given song title if no title can
 be extracted by other plugins.
 
-## Plugins
+## Customising Behaviour
 
 > **Note** Since `get-artist-title` is still new, the included/default set of
 > plugins might change.
@@ -78,7 +78,7 @@ Split the artist and title parts from a string. Return `[artist, title]` if
 successful, or `null` if unsuccessful.
 
 When using multiple plugins, their splitArtistTitle methods are run in order on
-the original string. The first match is used.
+the **original** string. The first match is used.
 
 ### plugin.mapArtistTitle(array)
 
