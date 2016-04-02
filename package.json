@@ -1,6 +1,6 @@
 {
   "name": "get-artist-title",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Get the artist and title from a string, eg. a YouTube video title",
   "license": "MIT",
   "repository": "goto-bus-stop/get-artist-title",
