@@ -18,6 +18,10 @@ module.exports = {
       expected: [ '에이핑크', 'Mr.chu' ] },
     // https://www.youtube.com/watch?v=P1Oya1PqKFc
     { input: 'Far East Movement - Live My Life (Feat. Justin Bieber) cover by J.Fla',
-      expected: [ 'Far East Movement', 'Live My Life (Feat. Justin Bieber) cover by J.Fla' ] }
+      expected: [ 'Far East Movement', 'Live My Life (Feat. Justin Bieber) cover by J.Fla' ] },
+    // https://www.youtube.com/watch?v=rnQBF2CIygg
+    // Thing that ends in a file extension without a preceding `.`:
+    { input: 'Baka Oppai - A Piece Of Toast',
+      expected: [ 'Baka Oppai', 'A Piece Of Toast' ] }
   ]
 }
