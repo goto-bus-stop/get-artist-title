@@ -34,6 +34,10 @@ module.exports = {
     // File extensions _and_ "official video"
     // https://www.youtube.com/watch?v=ZPjwdiD24Kg
     { input: 'Low Roar - Give Up (Official Video).mov',
-      expected: [ 'Low Roar', 'Give Up' ] }
+      expected: [ 'Low Roar', 'Give Up' ] },
+    // A separator with _only_ fluff like "MV" on one side
+    // https://www.youtube.com/watch?v=yRMvzyN-__Q
+    { input: 'MV_Planet Shiver_Rainbow [feat. Crush]',
+      expected: [ 'Planet Shiver', 'Rainbow' ] }
   ]
 }
