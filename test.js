@@ -3,6 +3,7 @@ var chalk = require('chalk')
 var success = require('success-symbol')
 var error = require('error-symbol')
 var warning = require('warning-symbol')
+var args = require('minimist')(process.argv.slice(2))
 
 var getSongArtistTitle = require('./')
 
@@ -60,6 +61,13 @@ function readSuite (suiteName) {
 var suites = fs.readdirSync('test').filter(function (name) {
   return /\.js$/.test(name)
 })
+
+if (args.grep) {
+  suites = suites.filter(function (name) {
+    return name.indexOf(args.grep) !== -1
+  })
+}
+
 var total = { fail: 0, optionalFail: 0, success: 0 }
 suites.forEach(function (suiteName) {
   var suite = readSuite(suiteName)
