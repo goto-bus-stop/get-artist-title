@@ -57,7 +57,9 @@ function readSuite (suiteName) {
   }
 }
 
-var suites = fs.readdirSync('test')
+var suites = fs.readdirSync('test').filter(function (name) {
+  return /\.js$/.test(name)
+})
 var total = { fail: 0, optionalFail: 0, success: 0 }
 suites.forEach(function (suiteName) {
   var suite = readSuite(suiteName)
