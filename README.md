@@ -66,24 +66,29 @@ k-pop song titles from YouTube, for example, things might get interesting…
 
 …and a custom parser might be useful.
 
-By default getArtistTitle extracts the artist and title of a song similarly to
+By default `getArtistTitle` extracts the artist and title of a song similarly to
 how the YouTube connector in the [Last.fm scrobbler for Chrome](https://github.com/david-sabata/web-scrobbler)
 works.
 
 A Plugin is a plain JavaScript object defining any of the below functions:
 
-### plugin.splitArtistTitle(string)
+### plugin.before(string)
+
+Preprocess the input string. Useful for stripping useless extras like "MV".
+Return the processed string when done.
+
+### plugin.split(string)
 
 Split the artist and title parts from a string. Return `[artist, title]` if
 successful, or `null` if unsuccessful.
 
-When using multiple plugins, their splitArtistTitle methods are run in order on
-the **original** string. The first match is used.
+When using multiple plugins, their `split` methods are run in order on the
+result of running all plugin `before` methods. The first match is used.
 
-### plugin.mapArtistTitle(array)
+### plugin.after(array)
 
 Do arbitrary things with the artist and title. `array` is a two-item array,
-like the ones returned from `splitArtistTitle()`: `[artist, title]`.
+like the ones returned from `split()`: `[artist, title]`.
 
 Return the new `[artist, title]` pair when you're done.
 
@@ -91,11 +96,6 @@ This method could be used to swap the artist and title for an input like this,
 where the song title precedes the artist name:
 [WORLD OF FANTASY (MUSIC VIDEO) / capsule](https://www.youtube.com/watch?v=W4h8m74pyC8)
 It's up to you to decide which cases need to be swapped, though :smile:
-
-### plugin.cleanArtist(artist), plugin.cleanTitle(title)
-
-Cleanup an artist or title part. Return the new artist or title part when you're
-done.
 
 ## Licence
 
