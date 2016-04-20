@@ -2,9 +2,7 @@ module.exports = {
   tests: [
     // https://youtu.be/A2RwHnfI2y8
     { input: 'Ga-In (가인) - Nostalgia (노스텔지아) - Lyrics [Hangul+Translation] .mov',
-      expected: [ 'Ga-In (가인)', 'Nostalgia (노스텔지아)' ],
-      // Will be non-optional once the base plugin is split up into more testable chunks.
-      optional: true },
+      expected: [ 'Ga-In (가인)', 'Nostalgia (노스텔지아)' ] },
     // https://www.youtube.com/watch?v=PYBuIwuD1DA
     { input: 'show me - B-free.m4v',
       expected: [ 'show me', 'B-free' ] },
