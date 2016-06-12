@@ -27,7 +27,7 @@ function runTest (plugins, test) {
   console.log('  ' + test.input)
   var result = getSongArtistTitle(test.input, plugins)
   if (!result || result[0] !== test.expected[0] || result[1] !== test.expected[1]) {
-    if (test.optional) {
+    if (test.optional && !args.strict) {
       optionalTestFailed(test, result)
       return 'optionalFail'
     } else {
