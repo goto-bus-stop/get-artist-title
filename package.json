@@ -6,6 +6,9 @@
   "repository": "goto-bus-stop/get-artist-title",
   "author": "Renée Kooi <renee@kooi.me>",
   "main": "lib/index.js",
+  "bin": {
+    "format-artist-title": "cli.js"
+  },
   "scripts": {
     "test": "standard && node test"
   },
