@@ -58,6 +58,17 @@ function readSuite (suiteName) {
   }
 }
 
+function getMaxLength (strs) {
+  return strs.reduce(function (max, str) {
+    return max > str.length ? max : str.length
+  }, 0)
+}
+
+function padTo (str, len, ch) {
+  while (str.length < len) str += ch || ' '
+  return str
+}
+
 var suites = fs.readdirSync('test').filter(function (name) {
   return /\.js$/.test(name)
 })
@@ -69,7 +80,7 @@ if (args.grep) {
 }
 
 var total = { fail: 0, optionalFail: 0, success: 0 }
-suites.forEach(function (suiteName) {
+var results = suites.map(function (suiteName) {
   var suite = readSuite(suiteName)
 
   var title = suiteName.replace(/\.txt$/, '')
@@ -82,18 +93,37 @@ suites.forEach(function (suiteName) {
     chalk.yellow(' ' + warning + ' ' + result.optionalFail) + ' ' +
     chalk.green(' ' + success + ' ' + result.success)
   )
+
   total.fail += result.fail
   total.optionalFail += result.optionalFail
   total.success += result.success
+
+  result.name = suiteName
+  return result
 })
 
 console.log('')
 console.log('summary')
 console.log('-------')
+
+var maxL = getMaxLength(results.map(function (r) {
+  return r.name
+}))
+results.forEach(function (result) {
+  console.log(
+    padTo(result.name, maxL) + ' | ' +
+    chalk.red(' ' + error + ' ' + padTo('' + result.fail, 3)) + '  ' +
+    chalk.yellow(' ' + warning + ' ' + padTo('' + result.optionalFail, 3)) + ' ' +
+    chalk.green(' ' + success + ' ' + padTo('' + result.success, 3))
+  )
+})
+
+console.log('-------')
 console.log(
-  chalk.red(' ' + error + ' ' + total.fail) + '  ' +
-  chalk.yellow(' ' + warning + ' ' + total.optionalFail) + ' ' +
-  chalk.green(' ' + success + ' ' + total.success)
+  padTo('', maxL + 2),
+  chalk.red(' ' + error + ' ' + padTo('' + total.fail, 3)) + '  ' +
+  chalk.yellow(' ' + warning + ' ' + padTo('' + total.optionalFail, 3)) + ' ' +
+  chalk.green(' ' + success + ' ' + padTo('' + total.success, 3))
 )
 
 if (total.fail > 0) {
