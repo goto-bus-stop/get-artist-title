@@ -25,14 +25,71 @@ let [ artist, title ] = getArtistTitle('FEMM - PoW! (Music Video)')
 
 ## API
 
+### getArtistTitle(string, options={})
+
+Extract the artist and title from `string`. Returns an Array with two elements,
+`[artist, title]`, or `null` if no artist/title can be found.
+
+Possible `options` are:
+
+  - `defaultArtist` - Artist name to use if an artist name/song title pair can't
+    be extracted. The input string, minus any cruft, will be used as the song
+    title.
+  - `defaultTitle` - Song title to use if an artist name/song title pair can't
+    be extracted. The input string, minus any cruft, will be used as the artist
+    name.
+
+It's useful to provide defaults if you're passing strings from an external
+service. For example, a YouTube video title may not always contain the artist
+name, but the name of the channel that uploaded it might be relevant.
+
+```js
+const [ artist, title ] = getArtistTitle('[MV] A Brand New Song!', {
+  defaultArtist: 'Channel Name'
+})
+// → ['Channel Name', 'A Brand New Song!']
+```
+
+```js
+// Assuming `video` is a Video resource from the YouTube Data API:
+const [ artist, title ] = getArtistTitle(video.snippet.title, {
+  defaultArtist: video.snippet.channelTitle
+})
+```
+
+## Customising Behaviour
+
+> **Note** Since `get-artist-title` is still new, the included/default set of
+> plugins might change.
+
+A specific use case can require different methods of detecting song names. If
+you're mostly going to be dealing with Western music, the default behaviour
+works pretty well. However if you're also going to be dealing with a lot of
+k-pop song titles from YouTube, for example, things might get interesting…
+
+ * [에프엑스_첫 사랑니(Rum Pum Pum Pum)_Music Video](https://www.youtube.com/watch?v=xnku4o3tRB4)
+ * [[MV] Lim Kim(김예림) (Togeworl(투개월)) _ Awoo](https://www.youtube.com/watch?v=CXPADwU05OQ)
+
+…and a custom parser might be useful.
+
+By default `getArtistTitle` extracts the artist and title of a song similarly to
+how the YouTube connector in the [Last.fm scrobbler for Chrome](https://github.com/david-sabata/web-scrobbler)
+works.
+
+## Using Plugins
+
+Next to the simplified API [shown above](#api), there is a separate API for
+using plugins.
+
 ### getArtistTitle(string, plugins=['base'])
 
-Extract the artist and title from `string`. Returns `null` if no artist/title
-can be found.
+Extract the artist and title from `string`. Returns an Array with two elements,
+`[artist, title]`, or `null` if no artist/title can be found.
 
-The second parameter is an array of plugins. These can be strings for [plugins
-that come with `get-artist-title`](./lib/plugins), or plugin objects. You
-shouldn't touch this unless you're noticing that you get really bad results :)
+The second parameter is an array of plugins. These can be strings, for [plugins
+that come with `get-artist-title`](./lib/plugins), or plugin objects. The `base`
+plugin combines all default plugins. When using custom plugins, you have to
+explicitly add the `base` plugin.
 
 ### getArtistTitle.fallBackToArtist(string)
 
@@ -55,24 +112,7 @@ getArtistTitle(video.snippet.title, [
 Create a plugin object that falls back to the given song title if no title can
 be extracted by other plugins.
 
-## Customising Behaviour
-
-> **Note** Since `get-artist-title` is still new, the included/default set of
-> plugins might change.
-
-A specific use case can require different methods of detecting song names. If
-you're mostly going to be dealing with Western music, the default behaviour
-works pretty well. However if you're also going to be dealing with a lot of
-k-pop song titles from YouTube, for example, things might get interesting…
-
- * [에프엑스_첫 사랑니(Rum Pum Pum Pum)_Music Video](https://www.youtube.com/watch?v=xnku4o3tRB4)
- * [[MV] Lim Kim(김예림) (Togeworl(투개월)) _ Awoo](https://www.youtube.com/watch?v=CXPADwU05OQ)
-
-…and a custom parser might be useful.
-
-By default `getArtistTitle` extracts the artist and title of a song similarly to
-how the YouTube connector in the [Last.fm scrobbler for Chrome](https://github.com/david-sabata/web-scrobbler)
-works.
+## Plugins API
 
 A Plugin is a plain JavaScript object defining any of the below functions:
 
