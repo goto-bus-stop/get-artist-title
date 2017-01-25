@@ -38,6 +38,10 @@ module.exports = {
     // A separator with _only_ fluff like "MV" on one side
     // https://www.youtube.com/watch?v=yRMvzyN-__Q
     { input: 'MV_Planet Shiver_Rainbow [feat. Crush]',
-      expected: [ 'Planet Shiver', 'Rainbow' ] }
+      expected: [ 'Planet Shiver', 'Rainbow' ] },
+    // "Official MV"
+    // https://www.youtube.com/watch?v=qSKPj--tyiM
+    { input: '임정희 Lim Jeong Hee - I.O.U Official MV',
+      expected: [ '임정희 Lim Jeong Hee', 'I.O.U' ] }
   ]
 }
