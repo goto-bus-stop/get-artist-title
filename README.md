@@ -14,6 +14,24 @@ npm install --save get-artist-title
 
 ## Usage
 
+### CLI
+
+```bash
+$ npm install --global get-artist-title
+
+$ format-artist-title
+
+Usage
+  $ format-artist-title <input>
+
+Example
+  $ format-artist-title "Ga-In (가인) - Nostalgia (노스텔지아) - Lyrics [Hangul+Translation] .mov"
+  Ga-In (가인) – Nostalgia (노스텔지아)
+
+```
+
+### JavaScript
+
 ```js
 const getArtistTitle = require('get-artist-title')
 getArtistTitle('Taylor Swift - Out Of The Woods')
