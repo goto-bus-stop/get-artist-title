@@ -1,7 +1,5 @@
-var fallBackToArtist = require('../').fallBackToArtist
-
 module.exports = {
-  plugins: [ 'base', fallBackToArtist('Artist') ],
+  options: { defaultArtist: 'Artist' },
   tests: [
     { input: 'Title',
       expected: [ 'Artist', 'Title' ] }

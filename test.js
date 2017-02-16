@@ -5,7 +5,7 @@ var error = require('error-symbol')
 var warning = require('warning-symbol')
 var args = require('minimist')(process.argv.slice(2))
 
-var getSongArtistTitle = require('./')
+var getArtistTitle = require('./')
 
 function stringifyTitle (o) {
   return o ? '"' + o[0] + '" - "' + o[1] + '"' : 'nothing'
@@ -23,9 +23,9 @@ function testSucceeded (test, result) {
   console.log(chalk.green('   ' + success + ' got ' + stringifyTitle(result)))
 }
 
-function runTest (plugins, test) {
+function runTest (options, test) {
   console.log('  ' + test.input)
-  var result = getSongArtistTitle(test.input, plugins)
+  var result = getArtistTitle(test.input, options)
   if (!result || result[0] !== test.expected[0] || result[1] !== test.expected[1]) {
     if (test.optional && !args.strict) {
       optionalTestFailed(test, result)
@@ -42,7 +42,7 @@ function runTest (plugins, test) {
 function runSuite (suite) {
   var score = { fail: 0, optionalFail: 0, success: 0 }
   suite.tests
-    .map(runTest.bind(null, suite.plugins))
+    .map(runTest.bind(null, suite.options || {}))
     .forEach(function (result) {
       score[result]++
     })
@@ -53,7 +53,7 @@ function readSuite (suiteName) {
   var suite = require('./test/' + suiteName)
   return {
     name: suiteName,
-    plugins: suite.plugins,
+    options: suite.options,
     tests: suite.tests
   }
 }

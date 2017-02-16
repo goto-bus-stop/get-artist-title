@@ -1,7 +1,5 @@
-var fallBackToTitle = require('../').fallBackToTitle
-
 module.exports = {
-  plugins: [ 'base', fallBackToTitle('Title') ],
+  options: { defaultTitle: 'Title' },
   tests: [
     { input: 'Artist',
       expected: [ 'Artist', 'Title' ] }
