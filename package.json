@@ -15,7 +15,6 @@
   "keywords": [],
   "dependencies": {
     "audio-extensions": "0.0.0",
-    "lodash.flow": "^3.2.1",
     "video-extensions": "^1.1.0"
   },
   "devDependencies": {
