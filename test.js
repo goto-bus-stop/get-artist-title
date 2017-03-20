@@ -83,7 +83,7 @@ var total = { fail: 0, optionalFail: 0, success: 0 }
 var results = suites.map(function (suiteName) {
   var suite = readSuite(suiteName)
 
-  var title = suiteName.replace(/\.txt$/, '')
+  var title = suiteName.replace(/\.js$/, '')
   console.log(title)
   console.log(title.replace(/./g, '-'))
 
@@ -98,7 +98,7 @@ var results = suites.map(function (suiteName) {
   total.optionalFail += result.optionalFail
   total.success += result.success
 
-  result.name = suiteName
+  result.name = title
   return result
 })
 
