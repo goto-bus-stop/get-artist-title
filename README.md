@@ -1,5 +1,7 @@
 # get-artist-title
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/goto-bus-stop/get-artist-title.svg)](https://greenkeeper.io/)
+
 [![travis](https://img.shields.io/travis/goto-bus-stop/get-artist-title.svg?style=flat-square)](https://travis-ci.org/goto-bus-stop/get-artist-title)
 [![npm](https://img.shields.io/npm/v/get-artist-title.svg?style=flat-square)](https://npmjs.com/package/get-artist-title)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
