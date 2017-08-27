@@ -4,14 +4,10 @@ module.exports = {
   // jypentertainment uses a title format like:
   // Artist "Title" Fluff
   tests: [
-    // This one is not so fun because there is a separator inside the quotes,
-    // and separators are usually tried first. It could be worked around by
-    // only splitting on separators outside quotes, perhaps, but until then,
-    // it'll just be marked "optional" instead :')
+    // This one is not so fun because there is a separator (-) inside the quotes,
+    // and separators are usually tried first.
     { input: 'TWICE(트와이스) "OOH-AHH하게(Like OOH-AHH)" M/V',
-      expected: [ 'TWICE(트와이스)', 'OOH-AHH하게(Like OOH-AHH)' ],
-      optional: true },
-
+      expected: [ 'TWICE(트와이스)', 'OOH-AHH하게(Like OOH-AHH)' ] },
     { input: 'GOT7 "Just right(딱 좋아)" M/V',
       expected: [ 'GOT7', 'Just right(딱 좋아)' ] },
     { input: 'miss A “Only You(다른 남자 말고 너)” M/V',
