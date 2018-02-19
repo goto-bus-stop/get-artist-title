@@ -21,7 +21,7 @@
     "chalk": "^2.0.0",
     "error-symbol": "^0.1.0",
     "minimist": "^1.2.0",
-    "standard": "^10.0.0-beta.0",
+    "standard": "^11.0.0",
     "success-symbol": "^0.1.0",
     "warning-symbol": "^0.1.0"
   }
