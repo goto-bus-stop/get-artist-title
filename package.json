@@ -1,18 +1,12 @@
 {
   "name": "get-artist-title",
-  "version": "1.0.0",
   "description": "Get the artist and title from a string, eg. a YouTube video title",
-  "license": "MIT",
-  "repository": "goto-bus-stop/get-artist-title",
+  "version": "1.0.0",
   "author": "Renée Kooi <renee@kooi.me>",
-  "main": "lib/index.js",
   "bin": {
     "format-artist-title": "cli.js"
   },
-  "scripts": {
-    "test": "standard && node test"
-  },
-  "keywords": [],
+  "bugs": "https://github.com/goto-bus-stop/get-artist-title/issues",
   "dependencies": {
     "audio-extensions": "0.0.0",
     "video-extensions": "^1.1.0"
@@ -24,5 +18,13 @@
     "standard": "^11.0.0",
     "success-symbol": "^0.1.0",
     "warning-symbol": "^0.1.0"
+  },
+  "homepage": "https://github.com/goto-bus-stop/get-artist-title",
+  "keywords": [],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "repository": "goto-bus-stop/get-artist-title",
+  "scripts": {
+    "test": "standard && node test"
   }
 }
