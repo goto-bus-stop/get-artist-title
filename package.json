@@ -25,6 +25,7 @@
   "main": "lib/index.js",
   "repository": "goto-bus-stop/get-artist-title",
   "scripts": {
-    "test": "standard && node test"
+    "test": "node test",
+    "lint": "standard"
   }
 }

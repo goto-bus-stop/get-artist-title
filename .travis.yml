@@ -1,7 +1,10 @@
 language: node_js
 sudo: false
+script:
+  - npm test
+  - 'if [ $TRAVIS_NODE_VERSION = stable ]; then npm run lint; fi'
 node_js:
-  - 10
-  - 8
-  - 6
-  - 4
+  - 'stable'
+  - '8'
+  - '6'
+  - '4'
