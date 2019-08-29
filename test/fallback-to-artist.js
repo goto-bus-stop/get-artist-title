@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 module.exports = {
   options: { defaultArtist: 'Artist' },
   tests: [

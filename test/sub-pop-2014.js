@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 module.exports = {
   // everything from https://www.youtube.com/playlist?list=PLbOGt8cOph4Xm92N3mrb0epYxnnuYoyiX :)
   tests: [
