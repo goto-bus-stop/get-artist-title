@@ -4,6 +4,7 @@ script:
   - 'if [ $TRAVIS_NODE_VERSION = stable ]; then npm run lint; fi'
 node_js:
   - 'stable'
+  - '12'
   - '10'
   - '8'
   - '6'
