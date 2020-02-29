@@ -1,7 +1,7 @@
 {
   "name": "get-artist-title",
   "description": "Get the artist and title from a string, eg. a YouTube video title",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "author": "Renée Kooi <renee@kooi.me>",
   "bin": {
     "format-artist-title": "cli.js"
