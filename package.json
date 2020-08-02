@@ -13,11 +13,8 @@
   },
   "devDependencies": {
     "chalk": "^2.0.0",
-    "error-symbol": "^0.1.0",
     "minimist": "^1.2.0",
-    "standard": "^14.1.0",
-    "success-symbol": "^0.1.0",
-    "warning-symbol": "^0.1.0"
+    "standard": "^14.1.0"
   },
   "homepage": "https://github.com/goto-bus-stop/get-artist-title",
   "keywords": [],

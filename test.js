@@ -1,8 +1,5 @@
 var fs = require('fs')
 var chalk = require('chalk')
-var success = require('success-symbol')
-var error = require('error-symbol')
-var warning = require('warning-symbol')
 var args = require('minimist')(process.argv.slice(2))
 
 var getArtistTitle = require('./')
@@ -12,15 +9,15 @@ function stringifyTitle (o) {
 }
 
 function testFailed (test, result) {
-  console.error(chalk.red('   ' + error + ' expected ' + stringifyTitle(test.expected)))
+  console.error(chalk.red('   ✖ expected ' + stringifyTitle(test.expected)))
   console.error(chalk.red('     but got  ' + stringifyTitle(result)))
 }
 function optionalTestFailed (test, result) {
-  console.error(chalk.yellow('   ' + warning + ' expected ' + stringifyTitle(test.expected)))
+  console.error(chalk.yellow('   ⚠ expected ' + stringifyTitle(test.expected)))
   console.error(chalk.yellow('     but got  ' + stringifyTitle(result)))
 }
 function testSucceeded (test, result) {
-  console.log(chalk.green('   ' + success + ' got ' + stringifyTitle(result)))
+  console.log(chalk.green('   ✔ got ' + stringifyTitle(result)))
 }
 
 function runTest (options, test) {
@@ -89,9 +86,9 @@ var results = suites.map(function (suiteName) {
 
   var result = runSuite(suite)
   console.log(
-    chalk.red(' ' + error + ' ' + result.fail) + '  ' +
-    chalk.yellow(' ' + warning + ' ' + result.optionalFail) + ' ' +
-    chalk.green(' ' + success + ' ' + result.success)
+    chalk.red(' ✖ ' + result.fail) + '  ' +
+    chalk.yellow(' ⚠ ' + result.optionalFail) + ' ' +
+    chalk.green(' ✔ ' + result.success)
   )
 
   total.fail += result.fail
@@ -112,18 +109,18 @@ var maxL = getMaxLength(results.map(function (r) {
 results.forEach(function (result) {
   console.log(
     padTo(result.name, maxL) + ' | ' +
-    chalk.red(' ' + error + ' ' + padTo('' + result.fail, 3)) + '  ' +
-    chalk.yellow(' ' + warning + ' ' + padTo('' + result.optionalFail, 3)) + ' ' +
-    chalk.green(' ' + success + ' ' + padTo('' + result.success, 3))
+    chalk.red(' ✖ ' + padTo('' + result.fail, 3)) + '  ' +
+    chalk.yellow(' ⚠ ' + padTo('' + result.optionalFail, 3)) + ' ' +
+    chalk.green(' ✔ ' + padTo('' + result.success, 3))
   )
 })
 
 console.log('-------')
 console.log(
   padTo('', maxL + 2),
-  chalk.red(' ' + error + ' ' + padTo('' + total.fail, 3)) + '  ' +
-  chalk.yellow(' ' + warning + ' ' + padTo('' + total.optionalFail, 3)) + ' ' +
-  chalk.green(' ' + success + ' ' + padTo('' + total.success, 3))
+  chalk.red(' ✖ ' + padTo('' + total.fail, 3)) + '  ' +
+  chalk.yellow(' ⚠ ' + padTo('' + total.optionalFail, 3)) + ' ' +
+  chalk.green(' ✔ ' + padTo('' + total.success, 3))
 )
 
 if (total.fail > 0) {
