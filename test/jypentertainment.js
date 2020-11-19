@@ -1,3 +1,6 @@
+/* eslint-disable no-var */
+'use strict'
+
 /* eslint-disable object-curly-newline */
 module.exports = {
   // K-pop song titles taken from JYP entertainment's Most Popular page:
