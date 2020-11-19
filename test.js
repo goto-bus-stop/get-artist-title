@@ -1,3 +1,6 @@
+/* eslint-disable no-var */
+'use strict'
+
 var fs = require('fs')
 var chalk = require('chalk')
 var args = require('minimist')(process.argv.slice(2))
