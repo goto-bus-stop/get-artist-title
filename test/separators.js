@@ -21,6 +21,6 @@ module.exports = {
       expected: ['YOUNHA(윤하)', 'Get It?(알아듣겠지) (Feat. HA:TFELT, CHEETAH(치타))'] },
     // https://www.youtube.com/watch?v=vyrFeUsO59E
     { input: 'BLESSED ~ Sorrows (Audio)',
-      expected: ['BLESSED', 'Sorrows (Audio)'] }
+      expected: ['BLESSED', 'Sorrows'] }
   ]
 }
