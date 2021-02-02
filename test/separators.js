@@ -18,6 +18,9 @@ module.exports = {
       optional: true },
     // https://www.youtube.com/watch?v=aeo_nWsu5cs
     { input: '[MV] YOUNHA(윤하) _ Get It?(알아듣겠지) (Feat. HA:TFELT, CHEETAH(치타))',
-      expected: ['YOUNHA(윤하)', 'Get It?(알아듣겠지) (Feat. HA:TFELT, CHEETAH(치타))'] }
+      expected: ['YOUNHA(윤하)', 'Get It?(알아듣겠지) (Feat. HA:TFELT, CHEETAH(치타))'] },
+    // https://www.youtube.com/watch?v=vyrFeUsO59E
+    { input: 'BLESSED ~ Sorrows (Audio)',
+      expected: ['BLESSED', 'Sorrows (Audio)'] }
   ]
 }
