@@ -17,6 +17,8 @@ module.exports = {
     { input: 'Dua Lipa - New Rules (Official Music Video) **NEW**',
       expected: ['Dua Lipa', 'New Rules'] },
     { input: 'Muse — The 2nd Law (Full Album) [HD]',
-      expected: ['Muse', 'The 2nd Law'] }
+      expected: ['Muse', 'The 2nd Law'] },
+    { input: 'BLESSED ~ Sorrows (Audio)',
+      expected: ['BLESSED', 'Sorrows'] }
   ]
 }
